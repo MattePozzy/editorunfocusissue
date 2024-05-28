@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:MauiApp10"
+             HideSoftInputOnTapped="True"
+             x:Class="MauiApp10.MainPage">
+
+    <ContentPage.BindingContext>
+        <local:MyViewModel />
+    </ContentPage.BindingContext>
+
+    <Grid RowDefinitions="100,50,50,150,150,auto,auto,10" ColumnDefinitions="20,*,20" RowSpacing="10">
+
+        <Label Grid.Row="0" Grid.Column="1" Text="Tap anywhere to make the editor lose focus" VerticalOptions="Center" HorizontalOptions="Center" />
+
+        <Button Text="tap on me to make the editor lose focus" Grid.Row="1" Grid.Column="1" />
+
+        <local:VolosEntry Hint="tap on me to make the editor lose focus" Grid.Row="2" Grid.Column="1" />
+
+        <local:VolosEditor
+            Grid.Row="3" Grid.Column="1"
+            MinimumHeightRequest="100"            
+            Valore="{Binding Text}" 
+            Unfocused="VolosEditor_Unfocused"
+            Hint="Sf SfTextInputLayout + MAUI Editor" />
+
+        <VerticalStackLayout Grid.Row="4" Grid.Column="1">
+            <Label Text="Only MAUI Editor" VerticalOptions="Center" HorizontalOptions="Center" />
+
+            <Editor 
+                MinimumHeightRequest="100"
+                Text="{Binding Text}"
+                Unfocused="VolosEditor_Unfocused" />
+        </VerticalStackLayout>
+
+        <Label Grid.Row="5" Grid.Column="1" Text="...but nothing trigger the unfocused event :(" />
+        <Label Grid.Row="6" Grid.Column="1" Text="for MAUI only, the unfocus event is called only if another input is getting focus" />
+    </Grid>
+</ContentPage>
